@@ -21,7 +21,7 @@ jobs:
   build_linux_arm: 
     strategy:
       matrix:
-        os: [ubuntu-18.04]
+        os: [ubuntu-latest]
         java: [8]
 
     runs-on: ${{ matrix.os }}
@@ -121,10 +121,18 @@ jobs:
             artifacts/bin/opencv-${{ env.OPENCV_VERSION_SHORT }}.jar
             artifacts/lib/libopencv_java${{ env.OPENCV_VERSION_SHORT }}.so
 
+      - name: Create Release
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+        uses: ncipollo/release-action@v1
+        with:
+            artifacts: "artifacts/**"
+            token: ${{ secrets.GITHUB_TOKEN }}
+            allowUpdates: true
+
   build_linux_arm64: 
     strategy:
       matrix:
-        os: [ubuntu-18.04]
+        os: [ubuntu-latest]
         java: [15]
 
     runs-on: ${{ matrix.os }}
@@ -224,12 +232,20 @@ jobs:
             artifacts/bin/opencv-${{ env.OPENCV_VERSION_SHORT }}.jar
             artifacts/lib/libopencv_java${{ env.OPENCV_VERSION_SHORT }}.so
 
+      - name: Create Release
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+        uses: ncipollo/release-action@v1
+        with:
+            artifacts: "artifacts/**"
+            token: ${{ secrets.GITHUB_TOKEN }}
+            allowUpdates: true
+
   # Build native libraries for Linux and Mac. Uploads the libraries
   # as artifacts which are used in subsequent jobs.
   build_mac_linux_x64:
     strategy:
       matrix:
-        os: [ubuntu-18.04, macos-10.15]
+        os: [ubuntu-latest, macos-10.15]
         java: [8]
 
     runs-on: ${{ matrix.os }}
@@ -294,13 +310,21 @@ jobs:
             opencv-${{ env.OPENCV_VERSION }}/build/lib/libopencv_java${{ env.OPENCV_VERSION_SHORT }}.so
             opencv-${{ env.OPENCV_VERSION }}/build/lib/libopencv_java${{ env.OPENCV_VERSION_SHORT }}.dylib
 
+      - name: Create Release
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+        uses: ncipollo/release-action@v1
+        with:
+            artifacts: opencv-${{ env.OPENCV_VERSION }}/build/bin/opencv-${{ env.OPENCV_VERSION_SHORT }}.jar
+            token: ${{ secrets.GITHUB_TOKEN }}
+            allowUpdates: true
+
   # Downloads the Windows distribution from OpenCV, extracts it and uploads
   # the native libraries as artifacts for use by subsequent jobs. This is
   # in leiu of building the native libraries on Windows.
   build_windows:
     strategy:
       matrix:
-        os: [ubuntu-18.04]
+        os: [ubuntu-latest]
         java: [15]
 
     runs-on: ${{ matrix.os }}
@@ -339,7 +363,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-18.04]
+        os: [ubuntu-latest]
         java: [8]
 
     runs-on: ${{ matrix.os }}
@@ -391,7 +415,7 @@ jobs:
     needs: build_dist
     strategy:
       matrix:
-        os: [macos-10.15, windows-2016, windows-2019, ubuntu-20.04, ubuntu-18.04]
+        os: [macos-10.15, windows-2016, windows-2019, ubuntu-latest]
         java: [8, 11]
 
     runs-on: ${{ matrix.os }}
@@ -428,7 +452,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-18.04]
+        os: [ubuntu-latest]
         java: [8]
 
     runs-on: ${{ matrix.os }}
