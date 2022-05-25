@@ -5,12 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <packaging>bundle</packaging>
-  <groupId>org.openpnp</groupId>
+  <groupId>de.lenaschimmel</groupId>
   <artifactId>opencv</artifactId>
   <version>4.5.3-0</version>
-  <name>OpenPnP OpenCV</name>
+  <name>Lena Schimmel OpenCV</name>
   <description>OpenCV packaged with native libraries and loader for multiple platforms.</description>
-  <url>http://github.com/openpnp/opencv</url>
+  <url>http://github.com/lenaschimmel/opencv</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,8 +22,8 @@
   <distributionManagement>
      <repository>
        <id>github</id>
-       <name>GitHub brainstorm Apache Maven Packages</name>
-       <url>https://maven.pkg.github.com/brainstorm/opencv</url>
+       <name>GitHub LenaSchimmel Apache Maven Packages</name>
+       <url>https://maven.pkg.github.com/lenaschimmel/opencv</url>
      </repository>
      <snapshotRepository>
        <id>ossrh</id>
@@ -88,16 +88,24 @@
 
   <scm>
     <url>http://github.com/openpnp/opencv</url>
-    <connection>scm:git:http://github.com/openpnp/opencv.git</connection>
-    <developerConnection>scm:git:http://github.com/openpnp/opencv.git</developerConnection>
+    <connection>scm:git:http://github.com/lenaschimmel/opencv.git</connection>
+    <developerConnection>scm:git:http://github.com/lenaschimmel/opencv.git</developerConnection>
   </scm>
 
   <issueManagement>
     <system>GitHub</system>
-    <url>http://github.com/openpnp/opencv/issues</url>
+    <url>http://github.com/lenaschimmel/opencv/issues</url>
   </issueManagement>
 
   <developers>
+    <developer>
+      <id>lenaschimmel</id>
+      <name>Lena Schimmel</name>
+      <email>mail@lenaschimmel.de</email>
+      <roles>
+        <role>maintainer</role>
+      </roles>
+    </developer>
     <developer>
       <id>vonnieda</id>
       <name>Jason von Nieda</name>
