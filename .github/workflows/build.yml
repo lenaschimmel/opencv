@@ -18,7 +18,8 @@ on:
   pull_request:
 
 jobs:
-  build_linux_arm: 
+  build_linux_arm:
+    if: "!contains(github.event.commits[0].message, '[skip arm]')"
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -129,7 +130,8 @@ jobs:
             token: ${{ secrets.GITHUB_TOKEN }}
             allowUpdates: true
 
-  build_linux_arm64: 
+  build_linux_arm64:
+    if: "!contains(github.event.commits[0].message, '[skip arm]')"
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -288,6 +290,7 @@ jobs:
             -D BUILD_opencv_apps=OFF \
             -D BUILD_opencv_gapi=OFF \
             -D CMAKE_BUILD_TYPE=RELEASE \
+            -D CMAKE_OSX_ARCHITECTURES='arm64;x86_64'
             ..
           make -j8
 
