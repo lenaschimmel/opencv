@@ -290,7 +290,7 @@ jobs:
             -D BUILD_opencv_apps=OFF \
             -D BUILD_opencv_gapi=OFF \
             -D CMAKE_BUILD_TYPE=RELEASE \
-            -D CMAKE_OSX_ARCHITECTURES='arm64;x86_64'
+            -D CMAKE_OSX_ARCHITECTURES='arm64;x86_64' \
             ..
           make -j8
 
